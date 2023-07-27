@@ -1,0 +1,49 @@
+{
+  "usuarios": [
+    {
+      "id": 2,
+      "cpf": "164.700.900-60",
+      "email": "maria@gmail.com",
+      "nome": "Maria Silva"
+    },
+    {
+      "id": 3,
+      "cpf": "492.744.340-06",
+      "email": "carlos@gmail.com",
+      "nome": "Carlos Silva"
+    },
+    {
+      "id": 4,
+      "cpf": "219.140.880-00",
+      "email": "pedro@gmail.com",
+      "nome": "Pedro Silva"
+    },
+    {
+      "id": 5,
+      "cpf": "450.621.710-16",
+      "email": "alfredo@gmail.com",
+      "nome": "Alfredo Silva"
+    },
+    {
+      "id": 6,
+      "cpf": "039.459.310-37",
+      "email": "Juca@gmail.com",
+      "nome": "Juca Silva"
+    }
+  ],
+  "tipos": {
+    "result": [
+      {
+        "_id": "63bd695467c786bb7bba887a",
+        "nome": "OFICIAL"
+      },
+      {
+        "_id": "63bd696a67c786bb7bba8882",
+        "nome": "EXTRA"
+      }
+    ]
+  },
+  "auth": {
+    "accessToken": "aaaaaaaaaa.bbbbbbbbbb.cccccccc"
+  }
+}

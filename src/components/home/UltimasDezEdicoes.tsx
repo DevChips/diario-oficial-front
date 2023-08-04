@@ -18,42 +18,12 @@ export const UltimasDezEdicoes = () => {
   useEffect(() => {
     setLoading(true)
 Api.get(`/tipos`)
-      .then(async (item) => {
+      .then(async (tipo) => {
         setLoading(false)
-        setTipos(item.data.result)
+        setTipos(tipo.data.result)
         const arrDiarios: any = []
         const arrDiariosOficial: any = []
-        const arrDiariosExtraOficial: any = []
-        await item.data.result.map((item: any) => {
-          const dataPublicacao = formatInTimeZone(
-            item.dataPublicacao.split('T')[0],
-            'America/Sao_Paulo',
-            "EEEEEE, dd 'de' MMMM yyyy",
-            {
-              locale: ptBR,
-            }
-          )
-
-          arrDiarios.push({
-            textPrimaryItem: `Edição ${item.edicao}`,
-            textSecondaryItem: dataPublicacao[0].toUpperCase() + dataPublicacao.substr(1),
-            arquivo: item.caminho,
-          })
-          if (item.tipo === '63e0fd56bc32968da5c3afa7') {
-            arrDiariosOficial.push({
-              textPrimaryItem: `Edição ${item.edicao}`,
-              textSecondaryItem: dataPublicacao[0].toUpperCase() + dataPublicacao.substr(1),
-              arquivo: item.caminho,
-            })
-          }
-          if (item.tipo === '63e263caded79d664fa49292') {
-            arrDiariosExtraOficial.push({
-              textPrimaryItem: `Edição ${item.edicao}`,
-              textSecondaryItem: dataPublicacao[0].toUpperCase() + dataPublicacao.substr(1),
-              arquivo: item.caminho,
-            })
-          }
-        })
+        const arrDiariosExtraOficial: any = []        
         setDiarios(arrDiarios)
         setDiariosOficial(arrDiariosOficial)
         setDiariosExtraOficial(arrDiariosExtraOficial)
@@ -72,22 +42,6 @@ Api.get(`/tipos`)
     };
   });
   
-  // console.log(dadosTab)
-  // const dadosTab = [
-  //   {
-  //     titulo: 'ÚLTIMAS EDIÇÕES',
-  //     componente: <FerramentaListageDiarios listagemDiariosOficiais={diarios} />,
-  //   },
-  //   {
-  //     titulo: 'ÚLTIMAS EDIÇÕES OFICIAIS',
-  //     componente: <FerramentaListageDiarios listagemDiariosOficiais={diariosOficial} />,
-  //   },
-  //   {
-  //     titulo: 'ÚLTIMAS EDIÇÕES EXTRA',
-  //     componente: <FerramentaListageDiarios listagemDiariosOficiais={diariosExtraOficial} />,
-  //   },
-  // ]
-
   return (
     <div
       style={{

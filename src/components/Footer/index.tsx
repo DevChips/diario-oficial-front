@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        fontFamily: 'Poppins',
+        fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
         fontSize: '0.75rem',
-        background: 'linear-gradient(195deg, rgb(73, 163, 241), rgb(15, 76, 129))',
+        background: 'linear-gradient(195deg, #536dfe, #3f51b5)',
         marginTop: '30px',
       }}
     >

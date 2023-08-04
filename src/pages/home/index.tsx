@@ -33,7 +33,7 @@ const Home: React.FC<ILayoutHomeProps> = ({barraFerramentas}) => {
         elevation={0}
         sx={{
           padding: '10px',
-          background: 'linear-gradient(195deg, rgb(73, 163, 241), rgb(15, 76, 129))',
+          background: 'linear-gradient(195deg, #536dfe, #3f51b5)',
         }}
       >
         <Toolbar

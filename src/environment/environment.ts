@@ -17,8 +17,6 @@ export const Environment = {
   /**
    * Url base de consultado dos dados dessa aplicação
    */
-  // URL_BASE: 'http://localhost:4000/v1',
-  URL_BASE: "https://api.anapolis.go.gov.br/apidiariooficial/v1",
-  URL_BASE_UPLOAD: "https://api.anapolis.go.gov.br/apiupload"
-  // URL_BASE: "http://10.10.100.60:4000/v1"
+  URL_BASE: "https://apidiario.devchips.com.br/v1",  
+  URL_BASE_UPLOAD: "https://upload-file.devchips.com.br"
 }

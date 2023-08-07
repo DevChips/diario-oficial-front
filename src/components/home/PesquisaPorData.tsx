@@ -110,7 +110,6 @@ export const PesquisaPorData = () => {
             >
               <Stack spacing={3}>
                 <DateCalendar
-                label='Data de publicação'
                 disableFuture
                 value={date}
                  onChange={(newValue) => {

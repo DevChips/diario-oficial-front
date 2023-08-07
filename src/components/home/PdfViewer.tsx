@@ -6,10 +6,11 @@ import { Environment } from '../../environment/environment'
 const PdfViewer = ({data}: any) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
-console.log(data)
+  console.log(`${Environment.URL_BASE_UPLOAD}/diario/00000000000/${data?.caminho}`)
   return (
     <Box
       padding='2.5rem'
+      marginTop='2rem'
       sx={
         smDown
           ? {

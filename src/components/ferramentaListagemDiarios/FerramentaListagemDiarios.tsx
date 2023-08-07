@@ -18,6 +18,7 @@ export const FerramentaListageDiarios = ({listagemDiariosOficiais, qtdItens}: an
         sx={{
           bgcolor: 'background.paper',
           display: 'flex',
+          margin: '0 40px'
         }}
       >
         <Grid
@@ -30,7 +31,7 @@ export const FerramentaListageDiarios = ({listagemDiariosOficiais, qtdItens}: an
               item
               xs={12}
               sm={12}
-              md={qtdItens ?? 2.4}
+              md={12}
             >
               <ListItem
                 sx={{

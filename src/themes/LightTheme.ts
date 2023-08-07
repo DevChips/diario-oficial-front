@@ -1,11 +1,11 @@
 import {createTheme} from '@mui/material'
-import {cyan, blue} from '@mui/material/colors'
+import {cyan, blue, indigo} from '@mui/material/colors'
 
 export const LightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: blue[900],
+      main: indigo[900],
       dark: blue[900],
       light: blue[600],
       contrastText: '#FFF',

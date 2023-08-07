@@ -33,20 +33,20 @@ const Home: React.FC<ILayoutHomeProps> = ({barraFerramentas}) => {
         elevation={0}
         sx={{
           padding: '10px',
-          background: 'linear-gradient(195deg, #536dfe, #3f51b5)',
+          background: 'linear-gradient(195deg, rgb(7 32 62), rgb(13 52 95))',
         }}
       >
         <Toolbar
           sx={
             smDown
-              ? {flexDirection: 'column', justifyContent: 'space-between'}
-              : {justifyContent: 'space-between'}
+              ? {flexDirection: 'column', justifyContent: 'space-between', margin: '0 40px'}
+              : {justifyContent: 'space-between', margin: '0 40px'}
           }
         >
           <Box
             component='img'
             sx={smDown ? {height: 60} : {height: 80}}
-            src='/media/logos/logo_branca.png'
+            src='/media/logos/logo_branca_padrao.png'
             alt='Logo DevChips'
           />
 

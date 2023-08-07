@@ -3,35 +3,30 @@ import {format} from 'date-fns'
 import 'dayjs/locale/pt-br'
 import React, {useState} from 'react'
 import {FerramentaListageDiarios} from '../../components/ferramentaListagemDiarios/FerramentaListagemDiarios'
-
-import {Box, Card, Stack, TextField, Typography, useMediaQuery, useTheme} from '@mui/material'
-import {DatePicker, LocalizationProvider, ptBR} from '@mui/x-date-pickers'
-import axios from 'axios'
+import {Box, Card, Stack, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {LocalizationProvider, ptBR} from '@mui/x-date-pickers'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import {formatInTimeZone} from 'date-fns-tz'
 import {ptBR as ptBRLocale} from 'date-fns/locale'
 import dayjs, {Dayjs} from 'dayjs'
 import { Api } from '../../services/axios-config'
-export const PesquisaPorData = () => {
-  const [loading, setLoading] = useState(false)
 
-  const [diarioPorData, setDiarioPorData] = useState([])
+export const PesquisaPorData = () => {
   const [date, setDate] = React.useState<Dayjs | null>(dayjs(Date.now()))
-  const [dataFormatadaBR, setDataFormatadaBR] = useState('')
   const [listagemDiariosPorData, setListagemDiariosPorData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const buscarPorData = async (dataBusca: any) => {
-    setLoading(true)
+    setIsLoading(true)
     setDate(dataBusca)
     const dataFormatada = format(new Date(dataBusca), 'yyyy-MM-dd')
-    setDataFormatadaBR(format(new Date(dataBusca), 'dd/MM/yyyy'))
 
     await Api
       .get(
         `/diarios/publicados?limit=6&dataInicial=${dataFormatada}&dataFinal=${dataFormatada}`
       )
       .then(async (item) => {
-        setDiarioPorData(item.data)
-        setLoading(false)
+        setIsLoading(false)
 
         const diarios: any = []
         await item.data.result.map((item: any) => {
@@ -54,12 +49,14 @@ export const PesquisaPorData = () => {
       })
       .catch((err) => {
         console.error(err)
-        setLoading(false)
+        setIsLoading(false)
       })
   }
 
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const handleOpenModal = (dados: any) => {
+  }
 
   return (
     <Box
@@ -100,10 +97,9 @@ export const PesquisaPorData = () => {
         </Box>
         <Box
           display='flex'
-          flexDirection='column'
+          flexDirection={smDown ? 'column' : 'row'}
           flex={1}
           marginTop={3}
-          padding={5}
         >
           <Box>
             <LocalizationProvider
@@ -113,33 +109,30 @@ export const PesquisaPorData = () => {
               localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}
             >
               <Stack spacing={3}>
-                <DatePicker
-                  //@ts-ignore
-                  disableFuture
-                  label='Data de publicação'
-                  openTo='year'
-                  views={['year', 'month', 'day']}
-                  value={date}
-                  //@ts-ignore
-                  onChange={(newValue) => {
-                    buscarPorData(newValue)
-                  }}
-                  //@ts-ignore
-                  renderInput={(params) => <TextField {...params} />}
+                <DateCalendar
+                label='Data de publicação'
+                disableFuture
+                value={date}
+                 onChange={(newValue) => {
+                  buscarPorData(newValue)
+                }}
                 />
               </Stack>
             </LocalizationProvider>
           </Box>
-          <Box>
-            {listagemDiariosPorData.length > 0 && (
-              <FerramentaListageDiarios
-                listagemDiariosOficiais={listagemDiariosPorData}
-                qtdItens={4}
-              />
-            )}
-          </Box>
+          {!isLoading && 
+           <Box>
+           {listagemDiariosPorData.length > 0 && (
+             <FerramentaListageDiarios
+               listagemDiariosOficiais={listagemDiariosPorData}
+               qtdItens={4}
+             />
+           )}
+         </Box>
+          }         
         </Box>
       </Card>
+
     </Box>
   )
 }
